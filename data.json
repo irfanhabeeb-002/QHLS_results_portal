@@ -1,0 +1,122 @@
+{
+  "total_participants": 1250,
+  "metadata": {
+    "exam_date": "April 5, 2026",
+    "total_zones": 11
+  },
+  "contacts": [
+    {
+      "zone": "ALUVA ZONE",
+      "name": "ASHKAR K A",
+      "phone": "9037553423"
+    },
+    {
+      "zone": "ERNAKULAM ZONE",
+      "name": "ANSARI ISLAHI",
+      "phone": "8848225907"
+    },
+    {
+      "zone": "KAKKANAD ZONE",
+      "name": "RIYAS P M",
+      "phone": "8891110025"
+    },
+    {
+      "zone": "KOCHI ZONE",
+      "name": "HARIS V M",
+      "phone": "8089657667"
+    },
+    {
+      "zone": "KOTHAMANGALAM ZONE",
+      "name": "ABDUL KAREEM",
+      "phone": "7594846607"
+    },
+    {
+      "zone": "PALLURUTHY ZONE",
+      "name": "UMMER MUKHTHAR",
+      "phone": "7736563613"
+    },
+    {
+      "zone": "PARAVOOR ZONE",
+      "name": "MUHAMMED JABIR",
+      "phone": "9961613714"
+    },
+    {
+      "zone": "PERUMBAVOOR ZONE",
+      "name": "ANSAL M V",
+      "phone": "9946104727"
+    },
+    {
+      "zone": "VYPIN ZONE",
+      "name": "NIZAMUDHEEN",
+      "phone": "7736472276"
+    },
+    {
+      "zone": "VYTILLA ZONE",
+      "name": "AJMAL ALTHAF MH",
+      "phone": "8714251522"
+    },
+    {
+      "zone": "MUVATTUPUZHA ZONE",
+      "name": "Noufal VA",
+      "phone": "9400916174"
+    }
+  ],
+  "phone_map": {
+    "9876543210": ["ST001", "ST002"],
+    "8877665544": ["ST045"],
+    "7766554433": ["ST102"]
+  },
+  "top_scorers": [
+    {
+      "id": "ST001",
+      "name": "Abdullah Farooq",
+      "marks": 98,
+      "zone": "Malappuram North",
+      "rank": 1
+    },
+    {
+      "id": "ST045",
+      "name": "Fathima Suhra",
+      "marks": 97,
+      "zone": "Kozhikode South",
+      "rank": 2
+    },
+    {
+      "id": "ST102",
+      "name": "Muhammed Rashid",
+      "marks": 96,
+      "zone": "Ernakulam",
+      "rank": 3
+    }
+  ],
+  "students": {
+    "ST001": {
+      "name": "Abdullah Farooq",
+      "marks": 98,
+      "zone": "Malappuram North",
+      "centre": "QHLS Center 01",
+      "reg_no": "REG-2024-001"
+    },
+    "ST002": {
+      "name": "Zainab Abdullah",
+      "marks": 85,
+      "zone": "Malappuram North",
+      "centre": "QHLS Center 01",
+      "reg_no": "REG-2024-002"
+    },
+    "ST045": {
+      "name": "Fathima Suhra",
+      "marks": 97,
+      "zone": "Kozhikode South",
+      "centre": "QHLS Center 15",
+      "reg_no": "REG-2024-045"
+    },
+    "ST102": {
+      "name": "Muhammed Rashid",
+      "marks": 96,
+      "zone": "Ernakulam",
+      "centre": "QHLS Center 22",
+      "reg_no": "REG-2024-102"
+    }
+  }
+}

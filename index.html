@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>QHLS Model Exam Results | ISM Ernakulam</title>
+    <meta name="description" content="Official results portal for QHLS Model Exam - Surah Hajj Thafseer">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loading" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="app-container">
+        <!-- Identity Header (Brand) -->
+        <header class="branding">
+            <div class="logo-group">
+                <img src="assets/ISM_ERNAKULAM_LOGO.jpeg" alt="ISM Logo" class="logo">
+                <div class="logo-divider"></div>
+                <img src="assets/QHLS Logo Without Background.png" alt="QHLS Logo" class="logo">
+            </div>
+            <h1>QHLS Model Exam Results</h1>
+            <p>ISM Ernakulam District Committee</p>
+            <span class="district-tag">OFFICIAL PORTAL</span>
+        </header>
+
+        <!-- Search View -->
+        <section id="view-search" class="view active">
+            <div class="hero-search">
+                <h2 class="view-title">Check Your Result</h2>
+                <p class="view-subtitle">Enter your registered phone number to view scores.</p>
+                
+                <div class="input-container">
+                    <input type="tel" id="phone-input" placeholder="Phone Number" autocomplete="off" maxlength="10">
+                </div>
+                <div id="search-error" class="error-msg"></div>
+                
+                <button id="search-btn" class="btn btn-primary">
+                    <span id="btn-text">Check Results</span>
+                    <div id="btn-loader" class="spinner hidden" style="width: 20px; height: 20px; border-width: 2px; border-top-color: white;">
+                    </div>
+                </button>
+            </div>
+
+            <div class="trust-strip">
+                <div class="trust-item">
+                    <span>📅</span> <span id="strip-date">April 5, 2026</span>
+                </div>
+                <div class="trust-item">
+                    <span>📍</span> <span id="strip-zones">11 Zones</span>
+                </div>
+                <div class="trust-item">
+                    <span>👥</span> <span id="strip-students">1250+ Students</span>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <span class="section-label">EXAM STATISTICS</span>
+                <div class="stat-pill">
+                    <span class="val" id="total-participants">...</span>
+                    <span class="lab">Total Participants</span>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <span class="section-label">TOP PERFORMERS 🏆</span>
+                <div id="toppers-list">
+                    <!-- Toppers injected here -->
+                </div>
+            </div>
+
+            <div class="section-header">
+                <span class="section-label">NEED HELP? CONTACT CONVENORS</span>
+                <div id="contacts-list" class="contacts-grid">
+                    <!-- Contacts injected here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- List View -->
+        <section id="view-list" class="view">
+            <div class="hero-search" style="padding-bottom: 20px; text-align: left;">
+                <h2 class="view-title">Matches Found</h2>
+                <p class="view-subtitle">Multiple students linked to this number.</p>
+            </div>
+            
+            <div id="results-list">
+                <!-- Results injected here -->
+            </div>
+
+            <button class="btn btn-primary back-btn" style="background: var(--bg); color: var(--primary); border: 1px solid var(--primary); margin-top: 30px;">
+                Back to Search
+            </button>
+        </section>
+
+        <!-- Detail View -->
+        <section id="view-detail" class="view">
+            <div id="student-detail-content">
+                <!-- Detail content injected here -->
+            </div>
+
+            <button class="btn btn-primary back-btn" style="background: var(--bg); color: var(--primary); border: 1px solid var(--primary); margin-top: 30px;">
+                Back
+            </button>
+        </section>
+
+        <!-- Empty State View -->
+        <section id="view-empty" class="view">
+            <div class="empty-state">
+                <div class="empty-icon">🔍</div>
+                <h2 class="view-title">No Results Found</h2>
+                <p class="view-subtitle">Check the number or contact your zone convenor for assistance.</p>
+                <div id="empty-contacts" class="contacts-grid" style="margin-top: 30px;">
+                    <!-- Contacts injected here for quick access -->
+                </div>
+                <button class="btn btn-primary back-btn" style="margin-top: 40px;">
+                    Try Another Number
+                </button>
+            </div>
+        </section>
+
+        <footer style="margin-top: 80px; text-align: center; padding: 40px 0; border-top: 1px solid #EDEDED;">
+            <p style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Organized by</p>
+            <div class="footer-logos">
+                <img src="assets/ISM_ERNAKULAM_LOGO.jpeg" alt="ISM Logo" class="footer-logo">
+            </div>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 10px;">ISM Ernakulam District Committee</p>
+            <p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 20px; opacity: 0.5;">QHLS Result Portal</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
