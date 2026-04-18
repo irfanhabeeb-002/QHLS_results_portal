@@ -3,8 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>QHLS Model Exam Results | ISM Ernakulam</title>
-    <meta name="description" content="Official results portal for QHLS Model Exam - Surah Hajj Thafseer">
+    
+    <!-- Primary Meta Tags -->
+    <title>QHLS Model Exam Results 2026 | ISM Ernakulam District</title>
+    <meta name="title" content="QHLS Model Exam Results 2026 | ISM Ernakulam District">
+    <meta name="description" content="Official results portal for QHLS Model Exam 2026 conducted by ISM Ernakulam. Search by phone number to view marks, rankings, and zone details.">
+    <meta name="keywords" content="QHLS results, QHLS, ISM Ernakulam, Quran Hadith Learning School, Kerala Islamic exam results, Surah Hajj exam, ISM KERALA">
+    <meta name="author" content="ISM Ernakulam District Committee">
+    <link rel="canonical" href="https://qhlsresults.netlify.app">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://qhlsresults.netlify.app">
+    <meta property="og:title" content="QHLS Model Exam Results 2026 | ISM Ernakulam">
+    <meta property="og:description" content="Check your QHLS Model Exam 2026 results. Official portal for ISM Ernakulam District.">
+    <meta property="og:image" content="https://qhlsresults.netlify.app/assets/QHLS%20Logo%20Without%20Background.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://qhlsresults.netlify.app">
+    <meta property="twitter:title" content="QHLS Model Exam Results 2026 | ISM Ernakulam">
+    <meta property="twitter:description" content="Check your QHLS Model Exam 2026 results. Official portal for ISM Ernakulam District.">
+    <meta property="twitter:image" content="https://qhlsresults.netlify.app/assets/QHLS%20Logo%20Without%20Background.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "Quran Hadith Learning School (QHLS)",
+      "alternateName": "QHLS Model Exam",
+      "url": "https://qhlsresults.netlify.app",
+      "logo": "https://qhlsresults.netlify.app/assets/QHLS%20Logo%20Without%20Background.png",
+      "organizer": {
+        "@type": "Organization",
+        "name": "ISM Ernakulam District Committee"
+      },
+      "event": {
+        "@type": "Event",
+        "name": "QHLS Model Exam 2026",
+        "startDate": "2026-04-05",
+        "location": {
+          "@type": "Place",
+          "name": "Ernakulam District, Kerala",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Ernakulam",
+            "addressRegion": "Kerala",
+            "addressCountry": "IN"
+          }
+        },
+        "description": "Annual model exam for Surah Hajj Thafseer."
+      }
+    }
+    </script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,11 +68,11 @@
         <div class="spinner"></div>
     </div>
 
-    <div class="app-container">
+    <main class="app-container">
         <!-- Identity Header (Brand) -->
         <header class="branding">
             <div class="logo-group">
-                <img src="assets/ISM_ERNAKULAM_LOGO.jpeg" alt="ISM Logo" class="logo">
+                <img src="assets/ISM_ERNAKULAM_LOGO.jpeg" alt="ISM Ernakulam Logo" class="logo">
                 <div class="logo-divider"></div>
                 <img src="assets/QHLS Logo Without Background.png" alt="QHLS Logo" class="logo">
             </div>
@@ -32,11 +88,11 @@
                 
                 <div class="search-card">
                     <div class="input-container">
-                        <input type="tel" id="phone-input" placeholder="Phone Number" autocomplete="off" maxlength="10">
+                        <input type="tel" id="phone-input" placeholder="Phone Number" autocomplete="off" maxlength="10" aria-label="Enter your registered phone number">
                     </div>
                     <div id="search-error" class="error-msg"></div>
                     
-                    <button id="search-btn" class="btn btn-primary">
+                    <button id="search-btn" class="btn btn-primary" aria-label="Check your exam results">
                         <span id="btn-text">Check Results</span>
                         <div id="btn-loader" class="spinner hidden" style="width: 20px; height: 20px; border-width: 2px; border-top-color: white;">
                         </div>
@@ -52,21 +108,13 @@
                     <span>📍</span> <span id="strip-zones">11 Zones</span>
                 </div>
                 <div class="trust-item">
-                    <span>👥</span> <span id="strip-students">550+ Students</span>
-                </div>
-            </div>
-
-            <div class="section-header">
-                <span class="section-label">EXAM STATISTICS</span>
-                <div class="stat-pill">
-                    <span class="val" id="total-participants">...</span>
-                    <span class="lab">Total Participants</span>
+                    <span>👥</span> <span id="strip-students">...</span>
                 </div>
             </div>
 
             <div class="section-header">
                 <span class="section-label">TOP PERFORMERS 🏆</span>
-                <div id="toppers-list">
+                <div id="toppers-list" style="margin-top: 20px;">
                     <!-- Toppers injected here -->
                 </div>
             </div>
@@ -74,13 +122,61 @@
             <div class="section-header">
                 <span class="section-label">NEED HELP?</span>
                 <span class="section-desc">Need help finding your result? Contact your zone convenor.</span>
-                <div id="contacts-list" class="contacts-grid">
+                <div id="contacts-list" class="contacts-grid" style="margin-top: 20px;">
                     <!-- Contacts injected here -->
                 </div>
             </div>
+
+            <div class="browse-action-card">
+                <p>Want to explore results by region?</p>
+                <button id="browse-trigger-btn" class="btn btn-secondary" style="border-color: var(--primary); font-size: 0.95rem;">
+                    Browse Results by Zone / Centre
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
         </section>
 
-        <!-- List View -->
+        <!-- Browse Zones View -->
+        <section id="view-browse-zones" class="view">
+            <div class="hero-search" style="padding-bottom: 20px; text-align: left;">
+                <h2 class="view-title">Browse Zones</h2>
+                <p class="view-subtitle">Select a zone to explore results.</p>
+            </div>
+            
+            <div id="zones-list" class="zone-grid">
+                <!-- Zones injected here -->
+            </div>
+
+            <button class="btn btn-secondary back-btn" style="margin-top: 30px;">
+                Back to Search
+            </button>
+        </section>
+
+        <!-- Browse Students View -->
+        <section id="view-browse-students" class="view">
+            <div class="hero-search" style="padding-bottom: 20px; text-align: left;">
+                <h2 class="view-title" id="current-browse-zone">Zone Name</h2>
+                <p class="view-subtitle">Filtered results for this zone (Marks out of 70).</p>
+            </div>
+
+            <div class="filter-container">
+                <span class="filter-label">Filter by Centre</span>
+                <select id="centre-filter" class="centre-select">
+                    <option value="all">All Centres</option>
+                    <!-- Centres injected here -->
+                </select>
+            </div>
+            
+            <div id="browse-results-list" class="student-list-grid">
+                <!-- Students injected here -->
+            </div>
+
+            <button class="btn btn-secondary back-btn" style="margin-top: 30px;" id="back-to-zones">
+                Back to Zones
+            </button>
+        </section>
+
+        <!-- List View (Phone Matches) -->
         <section id="view-list" class="view">
             <div class="hero-search" style="padding-bottom: 20px; text-align: left;">
                 <h2 class="view-title">Matches Found</h2>
@@ -91,7 +187,7 @@
                 <!-- Results injected here -->
             </div>
 
-            <button class="btn btn-primary back-btn" style="background: var(--bg); color: var(--primary); border: 1px solid var(--primary); margin-top: 30px;">
+            <button class="btn btn-secondary back-btn" style="margin-top: 30px;">
                 Back to Search
             </button>
         </section>
@@ -102,7 +198,7 @@
                 <!-- Detail content injected here -->
             </div>
 
-            <button class="btn btn-primary back-btn" style="background: var(--bg); color: var(--primary); border: 1px solid var(--primary); margin-top: 30px;">
+            <button class="btn btn-secondary back-btn" style="margin-top: 30px;" id="detail-back-btn">
                 Back
             </button>
         </section>
@@ -116,7 +212,7 @@
                 <div id="empty-contacts" class="contacts-grid" style="margin-top: 30px;">
                     <!-- Contacts injected here for quick access -->
                 </div>
-                <button class="btn btn-primary back-btn" style="margin-top: 40px;">
+                <button class="btn btn-secondary back-btn" style="margin-top: 40px;">
                     Try Another Number
                 </button>
             </div>
@@ -125,12 +221,12 @@
         <footer style="margin-top: 80px; text-align: center; padding: 40px 0; border-top: 1px solid #EDEDED;">
             <p style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Organized by</p>
             <div class="footer-logos">
-                <img src="assets/ISM_ERNAKULAM_LOGO.jpeg" alt="ISM Logo" class="footer-logo">
+                <img src="assets/ISM_ERNAKULAM_LOGO.jpeg" alt="ISM Ernakulam Official Logo" class="footer-logo">
             </div>
             <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 10px;">ISM Ernakulam District Committee</p>
             <p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 20px; opacity: 0.3;">QHLS Result Portal</p>
         </footer>
-    </div>
+    </main>
 
     <script src="app.js"></script>
 </body>
