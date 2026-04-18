@@ -22,25 +22,26 @@
             </div>
             <h1>QHLS Model Exam Results</h1>
             <p>ISM Ernakulam District Committee</p>
-            <span class="district-tag">OFFICIAL PORTAL</span>
         </header>
 
         <!-- Search View -->
         <section id="view-search" class="view active">
             <div class="hero-search">
                 <h2 class="view-title">Check Your Result</h2>
-                <p class="view-subtitle">Enter your registered phone number to view scores.</p>
+                <p class="emotional-anchor">Enter your registered phone number to view scores.</p>
                 
-                <div class="input-container">
-                    <input type="tel" id="phone-input" placeholder="Phone Number" autocomplete="off" maxlength="10">
-                </div>
-                <div id="search-error" class="error-msg"></div>
-                
-                <button id="search-btn" class="btn btn-primary">
-                    <span id="btn-text">Check Results</span>
-                    <div id="btn-loader" class="spinner hidden" style="width: 20px; height: 20px; border-width: 2px; border-top-color: white;">
+                <div class="search-card">
+                    <div class="input-container">
+                        <input type="tel" id="phone-input" placeholder="Phone Number" autocomplete="off" maxlength="10">
                     </div>
-                </button>
+                    <div id="search-error" class="error-msg"></div>
+                    
+                    <button id="search-btn" class="btn btn-primary">
+                        <span id="btn-text">Check Results</span>
+                        <div id="btn-loader" class="spinner hidden" style="width: 20px; height: 20px; border-width: 2px; border-top-color: white;">
+                        </div>
+                    </button>
+                </div>
             </div>
 
             <div class="trust-strip">
@@ -51,7 +52,7 @@
                     <span>📍</span> <span id="strip-zones">11 Zones</span>
                 </div>
                 <div class="trust-item">
-                    <span>👥</span> <span id="strip-students">1250+ Students</span>
+                    <span>👥</span> <span id="strip-students">550+ Students</span>
                 </div>
             </div>
 
@@ -71,7 +72,8 @@
             </div>
 
             <div class="section-header">
-                <span class="section-label">NEED HELP? CONTACT CONVENORS</span>
+                <span class="section-label">NEED HELP?</span>
+                <span class="section-desc">Need help finding your result? Contact your zone convenor.</span>
                 <div id="contacts-list" class="contacts-grid">
                     <!-- Contacts injected here -->
                 </div>
@@ -126,7 +128,7 @@
                 <img src="assets/ISM_ERNAKULAM_LOGO.jpeg" alt="ISM Logo" class="footer-logo">
             </div>
             <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 10px;">ISM Ernakulam District Committee</p>
-            <p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 20px; opacity: 0.5;">QHLS Result Portal</p>
+            <p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 20px; opacity: 0.3;">QHLS Result Portal</p>
         </footer>
     </div>
 

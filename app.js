@@ -3,44 +3,94 @@
  * Official ISM Ernakulam Exam Portal
  */
 
-let appData = null;
-const DOM = {
-    views: {
-        search: document.getElementById('view-search'),
-        list: document.getElementById('view-list'),
-        detail: document.getElementById('view-detail'),
-        empty: document.getElementById('view-empty')
-    },
-    btn: {
-        search: document.getElementById('search-btn'),
-        text: document.getElementById('btn-text'),
-        loader: document.getElementById('btn-loader')
-    },
-    inputs: {
-        phone: document.getElementById('phone-input')
-    },
-    containers: {
-        toppers: document.getElementById('toppers-list'),
-        contacts: document.getElementById('contacts-list'),
-        emptyContacts: document.getElementById('empty-contacts'),
-        results: document.getElementById('results-list'),
-        detail: document.getElementById('student-detail-content')
-    },
-    stats: {
-        total: document.getElementById('total-participants'),
-        stripDate: document.getElementById('strip-date'),
-        stripZones: document.getElementById('strip-zones'),
-        stripStudents: document.getElementById('strip-students')
-    },
-    error: document.getElementById('search-error')
+// DOM Elements
+let DOM = {};
+
+function initDOM() {
+    DOM = {
+        views: {
+            search: document.getElementById('view-search'),
+            list: document.getElementById('view-list'),
+            detail: document.getElementById('view-detail'),
+            empty: document.getElementById('view-empty')
+        },
+        btn: {
+            search: document.getElementById('search-btn'),
+            text: document.getElementById('btn-text'),
+            loader: document.getElementById('btn-loader')
+        },
+        inputs: {
+            phone: document.getElementById('phone-input')
+        },
+        containers: {
+            toppers: document.getElementById('toppers-list'),
+            contacts: document.getElementById('contacts-list'),
+            emptyContacts: document.getElementById('empty-contacts'),
+            results: document.getElementById('results-list'),
+            detail: document.getElementById('student-detail-content')
+        },
+        stats: {
+            total: document.getElementById('total-participants'),
+            stripDate: document.getElementById('strip-date'),
+            stripZones: document.getElementById('strip-zones'),
+            stripStudents: document.getElementById('strip-students')
+        },
+        error: document.getElementById('search-error')
+    };
+}
+
+// Advanced Quote Logic
+const quotes = {
+    high: [
+        {
+            text: "The best among you are those who learn the Qur’an and teach it.",
+            ref: "Bukhari"
+        },
+        {
+            text: "Allah will raise those who have believed among you and those who were given knowledge, by degrees.",
+            ref: "Surah Al-Mujadilah 58:11"
+        }
+    ],
+    medium: [
+        {
+            text: "Man will have nothing except what he strives for.",
+            ref: "Surah An-Najm 53:39"
+        },
+        {
+            text: "Actions are judged by intentions.",
+            ref: "Bukhari & Muslim"
+        }
+    ],
+    low: [
+        {
+            text: "Allah is with those who are patient.",
+            ref: "Surah Al-Baqarah 2:153"
+        },
+        {
+            text: "Seeking knowledge is an obligation upon every Muslim.",
+            ref: "Ibn Majah"
+        }
+    ]
 };
 
+function getQuoteByMarks(marks) {
+    let category;
+    if (marks >= 60) category = "high";
+    else if (marks >= 50) category = "medium";
+    else category = "low";
+
+    const selected = quotes[category];
+    return selected[Math.floor(Math.random() * selected.length)];
+}
+
 // State
+let appData = null;
 let currentResults = [];
 
 // Initialize
 async function init() {
     try {
+        initDOM(); // Ensure DOM references are captured after script loads
         const response = await fetch('data.json');
         if (!response.ok) throw new Error('Data fetch failed');
         appData = await response.json();
@@ -81,7 +131,6 @@ function setupEventListeners() {
         if (e.key === 'Enter') handleSearch();
     });
 
-    // Clear error on type
     DOM.inputs.phone.addEventListener('input', () => {
         DOM.error.style.display = 'none';
     });
@@ -90,16 +139,12 @@ function setupEventListeners() {
 async function handleSearch() {
     const phone = DOM.inputs.phone.value.trim();
 
-    // 1. Validation check
     if (!phone || phone.length < 10) {
         showError('Please enter a valid 10-digit phone number');
         return;
     }
 
-    // 2. Loading State
     setLoading(true);
-
-    // Simulate network delay for premium feel
     await new Promise(r => setTimeout(r, 800));
 
     const studentIds = appData.phone_map[phone];
@@ -145,17 +190,16 @@ function switchView(viewId) {
 }
 
 function renderHomeContent() {
-    // 1. Strip Metadata
     if (appData.metadata) {
-        DOM.stats.stripDate.textContent = appData.metadata.exam_date;
-        DOM.stats.stripZones.textContent = `${appData.metadata.total_zones} Zones`;
-        DOM.stats.stripStudents.textContent = `${appData.total_participants}+ Students`;
+        if (DOM.stats.stripDate) DOM.stats.stripDate.textContent = appData.metadata.exam_date;
+        if (DOM.stats.stripZones) DOM.stats.stripZones.textContent = `${appData.metadata.total_zones} Zones`;
+        if (DOM.stats.stripStudents) DOM.stats.stripStudents.textContent = `${appData.total_participants}+ Students`;
     }
     
-    // 2. Total Stats
-    DOM.stats.total.textContent = appData.total_participants?.toLocaleString() || '...';
+    if (DOM.stats.total) {
+        DOM.stats.total.textContent = appData.total_participants?.toLocaleString() || '...';
+    }
     
-    // 3. Toppers
     DOM.containers.toppers.innerHTML = '';
     if (appData.top_scorers) {
         appData.top_scorers.forEach((topper, index) => {
@@ -173,7 +217,6 @@ function renderHomeContent() {
         });
     }
 
-    // 4. Contacts
     renderContacts(DOM.containers.contacts);
     renderContacts(DOM.containers.emptyContacts);
 }
@@ -221,12 +264,14 @@ function showResultsList(results) {
 }
 
 function showStudentDetail(student) {
+    const quote = getQuoteByMarks(student.marks);
+    
     DOM.containers.detail.innerHTML = `
         <div class="branding" style="padding-bottom: 10px;">
             <h2 class="view-title">Result Scorecard</h2>
         </div>
 
-        <div style="background: var(--primary); padding: 40px 20px; border-radius: var(--radius-lg); color: var(--white); text-align: center; margin-bottom: 30px; box-shadow: var(--shadow-lg);">
+        <div style="background: var(--primary); padding: 40px 20px; border-radius: var(--radius-lg); color: var(--white); text-align: center; margin-bottom: 24px; box-shadow: var(--shadow-lg);">
             <div style="font-size: 4.5rem; font-weight: 800; line-height: 1; margin-bottom: 5px;">${student.marks}</div>
             <div style="font-size: 0.9rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1.5px;">Final Score</div>
         </div>
@@ -254,10 +299,11 @@ function showStudentDetail(student) {
             </div>
         </div>
 
-        <div style="text-align: center; margin-top: 30px; opacity: 0.8;">
-             <p style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">
-                "Educating the Ummah with Excellence"
+        <div style="text-align: center; margin-top: 40px; opacity: 0.9; padding: 0 20px;">
+             <p style="font-size: 0.9rem; color: var(--primary); font-style: italic; font-weight: 500; line-height: 1.5;">
+                "${quote.text}"
             </p>
+            <p style="font-size: 0.8rem; color: var(--accent); font-weight: 700; margin-top: 8px;">— ${quote.ref}</p>
         </div>
     `;
     switchView('detail');
