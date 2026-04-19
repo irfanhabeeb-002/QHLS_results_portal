@@ -149,7 +149,13 @@ function setupEventListeners() {
         if (e.key === 'Enter') handleSearch();
     });
 
-    DOM.inputs.phone.addEventListener('input', () => {
+    DOM.inputs.phone.addEventListener('input', (e) => {
+        let val = e.target.value.replace(/\D/g, '');
+        // Prevent first digit from being zero
+        if (val.startsWith('0')) {
+            val = val.substring(1);
+        }
+        e.target.value = val;
         DOM.error.style.display = 'none';
     });
 }
@@ -238,8 +244,8 @@ function renderStudentList(students) {
 
 async function handleSearch() {
     const phone = DOM.inputs.phone.value.trim();
-    if (!phone || phone.length < 10) {
-        showError('Please enter a valid 10-digit phone number');
+    if (!phone || phone.length !== 10) {
+        showError('Please enter exactly 10 digits');
         return;
     }
 
