@@ -205,16 +205,21 @@
 
         <!-- Empty State View -->
         <section id="view-empty" class="view">
-            <div class="empty-state">
-                <div class="empty-icon">🔍</div>
-                <h2 class="view-title">No Results Found</h2>
-                <p class="view-subtitle">Check the number or contact your zone convenor for assistance.</p>
-                <div id="empty-contacts" class="contacts-grid" style="margin-top: 30px;">
-                    <!-- Contacts injected here for quick access -->
-                </div>
-                <button class="btn btn-secondary back-btn" style="margin-top: 40px;">
+            <div class="browse-action-card" style="margin-top: 20px; border-style: solid; border-color: var(--error); background: rgba(214, 48, 49, 0.03);">
+                <div class="empty-icon" style="font-size: 2.5rem; margin-bottom: 15px;">🔍</div>
+                <h2 class="view-title" style="margin-bottom: 10px;">No Results Found</h2>
+                <p class="view-subtitle" style="margin-bottom: 24px;">Check the number or contact your zone convenor for assistance.</p>
+                <button class="btn btn-secondary back-btn" style="margin-top: 0; border-color: var(--primary);">
                     Try Another Number
                 </button>
+            </div>
+
+            <div class="section-header" style="margin-top: 60px;">
+                <span class="section-label">NEED HELP?</span>
+                <span class="section-desc">Need help finding your result? Contact your zone convenor correctly.</span>
+                <div id="empty-contacts" class="contacts-grid" style="margin-top: 24px;">
+                    <!-- Contacts injected here for quick access -->
+                </div>
             </div>
         </section>
 
