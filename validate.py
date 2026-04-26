@@ -2,9 +2,18 @@ import pandas as pd
 import json
 
 # =========================
-# LOAD EXCEL
+# LOAD MULTIPLE EXCEL FILES
 # =========================
-df = pd.read_excel("RESULT_QHLS.xlsx")
+
+df1 = pd.read_excel("RESULT_QHLS.xlsx")
+df2 = pd.read_excel("Muvattupuzha.xlsx")
+
+
+print(df1.columns)
+print(df2.columns)
+
+# Combine both
+df = pd.concat([df1, df2], ignore_index=True)
 
 # =========================
 # CLEAN COLUMN NAMES
