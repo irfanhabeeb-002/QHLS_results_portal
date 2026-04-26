@@ -90,6 +90,15 @@
                     <div class="input-container">
                         <input type="tel" id="phone-input" placeholder="Phone Number" autocomplete="off" maxlength="10" aria-label="Enter your registered phone number" inputmode="numeric" pattern="[0-9]*">
                     </div>
+                    
+                    <div class="search-divider">
+                        <span>OR search using Registration Number</span>
+                    </div>
+
+                    <div class="input-container">
+                        <input type="text" id="reg-input" placeholder="e.g. Q1224" autocomplete="off" maxlength="5" aria-label="Enter your registration number">
+                    </div>
+
                     <div id="search-error" class="error-msg"></div>
                     
                     <button id="search-btn" class="btn btn-primary" aria-label="Check your exam results">
@@ -97,6 +106,10 @@
                         <div id="btn-loader" class="spinner hidden" style="width: 20px; height: 20px; border-width: 2px; border-top-color: white;">
                         </div>
                     </button>
+
+                    <p class="search-support-text">
+                        If your phone number does not work, please contact your zone convenor to get your registration number.
+                    </p>
                 </div>
             </div>
 
@@ -138,6 +151,10 @@
 
         <!-- Browse Zones View -->
         <section id="view-browse-zones" class="view">
+            <button class="btn btn-secondary back-btn" style="margin-bottom: 20px; width: auto; padding: 10px 20px; font-size: 0.85rem;">
+                ← Back to Search
+            </button>
+
             <div class="hero-search" style="padding-bottom: 20px; text-align: left;">
                 <h2 class="view-title">Browse Zones</h2>
                 <p class="view-subtitle">Select a zone to explore results.</p>
@@ -146,14 +163,14 @@
             <div id="zones-list" class="zone-grid">
                 <!-- Zones injected here -->
             </div>
-
-            <button class="btn btn-secondary back-btn" style="margin-top: 30px;">
-                Back to Search
-            </button>
         </section>
 
         <!-- Browse Students View -->
         <section id="view-browse-students" class="view">
+            <button class="btn btn-secondary back-btn" id="back-to-zones" style="margin-bottom: 20px; width: auto; padding: 10px 20px; font-size: 0.85rem;">
+                ← Back to Zones
+            </button>
+
             <div class="hero-search" style="padding-bottom: 20px; text-align: left;">
                 <h2 class="view-title" id="current-browse-zone">Zone Name</h2>
                 <p class="view-subtitle">Filtered results for this zone (Marks out of 70).</p>
@@ -170,10 +187,6 @@
             <div id="browse-results-list" class="student-list-grid">
                 <!-- Students injected here -->
             </div>
-
-            <button class="btn btn-secondary back-btn" style="margin-top: 30px;" id="back-to-zones">
-                Back to Zones
-            </button>
         </section>
 
         <!-- List View (Phone Matches) -->

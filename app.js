@@ -19,7 +19,8 @@ const DOM = {
         browseTrigger: document.getElementById('browse-trigger-btn')
     },
     inputs: {
-        phone: document.getElementById('phone-input')
+        phone: document.getElementById('phone-input'),
+        reg: document.getElementById('reg-input')
     },
     containers: {
         toppers: document.getElementById('toppers-list'),
@@ -130,6 +131,7 @@ function setupEventListeners() {
             
             switchView('search');
             DOM.inputs.phone.value = '';
+            DOM.inputs.reg.value = '';
             DOM.error.style.display = 'none';
         });
     });
@@ -157,6 +159,22 @@ function setupEventListeners() {
         }
         e.target.value = val;
         DOM.error.style.display = 'none';
+        
+        // Clear reg input if typing in phone
+        DOM.inputs.reg.value = '';
+    });
+
+    DOM.inputs.reg.addEventListener('input', (e) => {
+        // Auto-uppercase
+        e.target.value = e.target.value.toUpperCase();
+        DOM.error.style.display = 'none';
+        
+        // Clear phone input if typing in reg
+        DOM.inputs.phone.value = '';
+    });
+
+    DOM.inputs.reg.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleSearch();
     });
 }
 
@@ -164,9 +182,13 @@ function switchView(viewId) {
     Object.values(DOM.views).forEach(v => v.classList.remove('active'));
     DOM.views[viewId].classList.add('active');
     window.scrollTo(0, 0);
-    if (viewId !== 'browseStudents') {
-        // Reset browsing state if navigating away from browse sub-views
-        if (viewId === 'search') browsingZone = null;
+    if (viewId === 'search') {
+        browsingZone = null;
+        DOM.inputs.phone.value = '';
+        DOM.inputs.reg.value = '';
+        DOM.error.style.display = 'none';
+        if (DOM.btn.loader) DOM.btn.loader.classList.add('hidden');
+        if (DOM.btn.text) DOM.btn.text.style.opacity = '1';
     }
 }
 
@@ -242,31 +264,79 @@ function renderStudentList(students) {
 
 // --- BASIC SEARCH & RENDER ---
 
+function searchByRegNo(regNo) {
+    regNo = regNo.trim().toUpperCase();
+    
+    // Strict Validation: Must start with Q and be exactly 5 chars
+    if (!regNo.startsWith('Q') || regNo.length !== 5) {
+        showError('Reg No must start with Q followed by 4 digits');
+        return null;
+    }
+
+    for (let id in appData.students) {
+        if (appData.students[id].reg_no === regNo) {
+            return { id, ...appData.students[id] };
+        }
+    }
+
+    return null;
+}
+
 async function handleSearch() {
     const phone = DOM.inputs.phone.value.trim();
-    if (!phone || phone.length !== 10) {
-        showError('Please enter exactly 10 digits');
+    const regNo = DOM.inputs.reg.value.trim();
+
+    if (!phone && !regNo) {
+        showError('Please enter Phone or Registration Number');
         return;
     }
 
     setLoading(true);
     await new Promise(r => setTimeout(r, 800));
 
-    const studentIds = appData.phone_map[phone];
-    if (!studentIds || studentIds.length === 0) {
+    // Try Phone Search First
+    if (phone) {
+        if (phone.length !== 10) {
+            setLoading(false);
+            showError('Please enter exactly 10 digits');
+            return;
+        }
+
+        const studentIds = appData.phone_map[phone];
+        if (!studentIds || studentIds.length === 0) {
+            setLoading(false);
+            showError("Couldn't find using phone. Try registration number.");
+            return;
+        }
+
+        browsingZone = null;
+        currentResults = studentIds.map(id => ({ id, ...appData.students[id] }));
         setLoading(false);
-        switchView('empty');
+
+        if (currentResults.length === 1) {
+            showStudentDetail(currentResults[0]);
+        } else {
+            showResultsList(currentResults);
+        }
         return;
     }
 
-    browsingZone = null; // Clear browsing state since we are searching
-    currentResults = studentIds.map(id => ({ id, ...appData.students[id] }));
-    setLoading(false);
+    // Fallback to Registration Number Search
+    if (regNo) {
+        const student = searchByRegNo(regNo);
+        setLoading(false);
 
-    if (currentResults.length === 1) {
-        showStudentDetail(currentResults[0]);
-    } else {
-        showResultsList(currentResults);
+        if (student) {
+            browsingZone = null;
+            currentResults = [student];
+            showStudentDetail(student);
+        } else {
+            // Error already shown by searchByRegNo or needs explicit check
+            // If searchByRegNo returns null without error, it means not found
+            if (DOM.error.style.display !== 'block') {
+                switchView('empty');
+            }
+        }
     }
 }
 
